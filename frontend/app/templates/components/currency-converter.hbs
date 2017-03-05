@@ -1,0 +1,40 @@
+<label>
+  Date:
+</label>
+
+{{pikaday-input value=selectedDate format="YYYY-MM-DD" onSelection=(action 'setDate') options=(hash disableWeekends=true minDate=minDate maxDate=maxDate)}}
+<label>
+  Amount:
+</label>
+
+  {{input type='number' min='0' value=amount}}
+
+<label>
+  From:
+  {{#power-select
+    selected=from
+    options=codes
+    onchange=(action "chooseFromCurrency")
+    as |currency|
+  }}
+    {{currency}}
+  {{/power-select}}
+</label>
+
+<label>
+  To:
+  {{#power-select
+    selected=to
+    options=codes
+    onchange=(action "chooseToCurrency")
+    as |currency|
+  }}
+    {{currency}}
+  {{/power-select}}
+</label>
+
+{{#if result.error}}
+  {{result.error}}
+{{else}}
+  {{result.amount}}
+{{/if}}
