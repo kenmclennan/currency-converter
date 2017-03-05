@@ -1,24 +1,43 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A demo web app for [the exchange-rate gem](https://github.com/kenmclennan/exchange-rate)
 
-Things you may want to cover:
+## prerequisites
 
-* Ruby version
+Tha backend is a Rails 5 app, built with ruby 2.3.
 
-* System dependencies
+The frontend is a single page Ember.js app. To install ember-cli you will need node & npm.
+To check run:
 
-* Configuration
+```bash
+node --version
+npm --version
+```
 
-* Database creation
+To install Ember
 
-* Database initialization
+```bash
+npm install -g ember-cli@2.11
+```
 
-* How to run the test suite
+Further details can be found at [https://guides.emberjs.com/v2.11.0/getting-started](https://guides.emberjs.com/v2.11.0/getting-started)
 
-* Services (job queues, cache servers, search engines, etc.)
+## Installation & setup
 
-* Deployment instructions
+```bash
+git clone https://github.com/kenmclennan/currency-converter
 
-* ...
+cd currency-converter
+
+bundle install
+
+rake exchange_rates:update
+
+rake ember:install
+rake ember:compile
+
+rails s
+```
+
+Then open your browser at [http://localhost:3000](http://localhost:3000)
+
