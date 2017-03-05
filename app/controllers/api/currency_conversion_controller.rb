@@ -4,7 +4,10 @@ class Api::CurrencyConversionController < ApplicationController
   def index
     date, from, to, amount = values
     convertor = ExchangeRate.at(date, from, to)
-    result    = convertor.convert(amount).to_h(round: 2)
+
+    result = convertor.convert(amount).to_h(round: 2).
+      merge(exchange_rate: convertor.exchange_rate.to_s)
+
     render json: result
   rescue ExchangeRate::Storage::RecordNotFound => e
     render json: { error: e.message }

@@ -21,4 +21,22 @@
   border-radius: 4px;
   box-shadow: none;
   box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+.result .amount, .result .error {
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  text-align: center;
+  padding: 6px 10px;
+}
+.result .amount {
+  font-size: 6rem;
+}
+.result .amount .currency {
+  font-size: 60%;
+}
+
+.result .amount .exchange-rate {
+  font-size: 1.4rem;
 }

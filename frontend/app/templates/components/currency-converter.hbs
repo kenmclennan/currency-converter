@@ -1,40 +1,63 @@
+
 <label>
-  Date:
+  Using Exchange Rate on
 </label>
 
-{{pikaday-input value=selectedDate format="YYYY-MM-DD" onSelection=(action 'setDate') options=(hash disableWeekends=true minDate=minDate maxDate=maxDate)}}
-<label>
-  Amount:
-</label>
-
-  {{input type='number' min='0' value=amount}}
-
-<label>
-  From:
-  {{#power-select
-    selected=from
-    options=codes
-    onchange=(action "chooseFromCurrency")
-    as |currency|
+{{pikaday-input
+  class="u-full-width"
+  value=selectedDate
+  format="YYYY-MM-DD"
+  placeholder="YYYY-MM-DD"
+  onSelection=(action 'setDate')
+  options=(hash disableWeekends=true minDate=minDate maxDate=maxDate)
   }}
-    {{currency}}
-  {{/power-select}}
-</label>
 
-<label>
-  To:
-  {{#power-select
-    selected=to
-    options=codes
-    onchange=(action "chooseToCurrency")
-    as |currency|
-  }}
-    {{currency}}
-  {{/power-select}}
-</label>
+<div class='row'>
+  <div class='four columns'>
+    <label>Amount</label>
+    {{input type='number' min='0' placeholder='0' value=amount class="u-full-width"}}
+  </div>
+  <div class='four columns'>
+    <label>From</label>
+    {{#power-select
+      selected=from
+      options=codes
+      onchange=(action "chooseFromCurrency")
+      placeholder='CCY'
+      as |currency|
+    }}
+      {{currency}}
+    {{/power-select}}
+  </div>
+  <div class='four columns'>
+    <label>To</label>
+    {{#power-select
+      selected=to
+      options=codes
+      onchange=(action "chooseToCurrency")
+      placeholder='CCY'
+      as |currency|
+    }}
+      {{currency}}
+    {{/power-select}}
+  </div>
+</div>
 
-{{#if result.error}}
-  {{result.error}}
-{{else}}
-  {{result.amount}}
-{{/if}}
+<div class='row'>
+  <div class='twelve columns'>
+    <div class='result'>
+      {{#if result.error}}
+        <div class="error">{{result.error}}</div>
+      {{/if}}
+      {{#if result.amount}}
+        <div class="amount">
+          {{result.amount}} <span class='currency'>{{result.currency}}</span>
+            <div class="exchange-rate">
+              1 {{from}} = {{result.exchange_rate}} {{to}}
+            </div>
+          </div>
+      {{/if}}
+    </div>
+  </div>
+</div>
+

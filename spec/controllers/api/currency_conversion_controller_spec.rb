@@ -18,6 +18,7 @@ RSpec.describe Api::CurrencyConversionController, type: :controller do
         data = JSON.parse(response.body)
         expect(data['amount']).to eq('800.00')
         expect(data['currency']).to eq('EUR')
+        expect(data['exchange_rate']).to eq('0.8000')
       end
     end
 
