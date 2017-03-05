@@ -15,6 +15,7 @@ class Api::CurrencyConversionController < ApplicationController
 
   private
     def values
+      params[:date] ||= Date.today
       [:date,:from,:to,:amount].map { |k| params[k] }
     end
 

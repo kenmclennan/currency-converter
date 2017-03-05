@@ -1,6 +1,15 @@
 @import 'normalize.css';
 @import 'skeleton.css';
 
+.viewport {
+  height: 100vh;
+  background-image: url('/images/piggy-bank.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: right bottom;
+}
+
 .text-center {
   text-align: center;
 }
@@ -22,6 +31,10 @@
   box-shadow: none;
   box-sizing: border-box;
   margin-bottom: 15px;
+}
+
+.result {
+  background-color: white;
 }
 
 .result .amount, .result .error {

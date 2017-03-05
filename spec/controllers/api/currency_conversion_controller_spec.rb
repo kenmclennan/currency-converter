@@ -7,11 +7,21 @@ RSpec.describe Api::CurrencyConversionController, type: :controller do
     ExchangeRate.repository.create({ date: Date.today, code: 'GBP', rate: '1.25'})
   end
 
-  let(:params) { { date: Date.today, from: 'GBP', to: 'EUR', amount: 1000 } }
+  let(:params) { { from: 'GBP', to: 'EUR', amount: 1000 } }
 
   describe "GET #index" do
     context 'when there is data' do
-      it 'performas a currency conversion and returns the result' do
+      it 'performs a currency conversion and returns the result' do
+        get :index, params: params.merge(date: Date.today)
+        expect(response).to have_http_status(:success)
+        expect(response.body).not_to be :empty
+        data = JSON.parse(response.body)
+        expect(data['amount']).to eq('800.00')
+        expect(data['currency']).to eq('EUR')
+        expect(data['exchange_rate']).to eq('0.8000')
+      end
+
+      it 'defaults to todays date' do
         get :index, params: params
         expect(response).to have_http_status(:success)
         expect(response.body).not_to be :empty

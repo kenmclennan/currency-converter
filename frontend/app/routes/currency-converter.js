@@ -8,7 +8,7 @@ export default Ember.Route.extend({
     amount: { refreshModel: true }
   },
   model(params) {
-    if (params.date && params.from && params.to && params.amount) {
+    if (params.from && params.to && params.amount) {
       return Ember.$.getJSON({ url: "/api/currency_conversion", type: "GET", data: params }).then(function(result) {
         return result;
       }).catch(function(){

@@ -14,6 +14,9 @@ export default Ember.Component.extend({
   selectedDate:Ember.computed('date',function() {
     return new Date(Date.parse(this.get('date')));
   }),
+  today: Ember.computed(function() {
+    return new Date();
+  }),
   actions: {
     chooseFromCurrency(currency) {
       this.set('from', currency);

@@ -1,16 +1,18 @@
-
-<label>
-  Using Exchange Rate on
-</label>
-
-{{pikaday-input
-  class="u-full-width"
-  value=selectedDate
-  format="YYYY-MM-DD"
-  placeholder="YYYY-MM-DD"
-  onSelection=(action 'setDate')
-  options=(hash disableWeekends=true minDate=minDate maxDate=maxDate)
-  }}
+<div class='row'>
+  <div class='twelve columns'>
+    <label>
+      Use exchange rate at date
+    </label>
+    {{pikaday-input
+      class="u-full-width"
+      value=selectedDate
+      format="YYYY-MM-DD"
+      placeholder="YYYY-MM-DD"
+      onSelection=(action 'setDate')
+      options=(hash disableWeekends=true minDate=minDate maxDate=maxDate defaultDate=today setDefaultDate=true)
+      }}
+  </div>
+</div>
 
 <div class='row'>
   <div class='four columns'>
